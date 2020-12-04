@@ -5,14 +5,14 @@
 
         // Variable aliasing
         document = window.document,
-        storage = window.sessionStorage,
+        storage = window.localStorage,
 
         run = function() {
             const
                 url = window.location.toString(),
 
                 // These are the potential UTM parameters
-                sessionKeys = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_expid', 'utm_term', 'utm_content'],
+                sessionKeys = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_expid', 'utm_term', 'utm_content', 'utm_time'],
 
                 // Same as above but as a regex for the URL. Make sure to keep these two in sync.
                 // Basically, each query string key/value should start with either a question mark or
@@ -50,6 +50,7 @@
                         storage.removeItem(sessionKeys[i]);
                     }
                     hasResetHappened = true;
+                    storage.setItem('utm_time', (new Date().getTime() / 1000).toString(10));
                 }
 
                 // We could use named parameters here, but to be safe use indexes
