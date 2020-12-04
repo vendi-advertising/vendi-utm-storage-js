@@ -50,7 +50,7 @@
                         storage.removeItem(sessionKeys[i]);
                     }
                     hasResetHappened = true;
-                    storage.setItem('utm_time', (new Date().getTime() / 1000).toString(10));
+                    storage.setItem('utm_time', Math.floor((new Date().getTime() / 1000)).toString(10));
                 }
 
                 // We could use named parameters here, but to be safe use indexes
